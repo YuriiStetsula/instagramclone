@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { View, Text, SafeAreaView, TextInput, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, SafeAreaView, TextInput, Image, TouchableOpacity, StyleSheet, FlatList, Button } from 'react-native';
 import { searchUser, getUser } from '../../actions/user'
 import { NavigationEvents } from 'react-navigation'
 
@@ -66,7 +66,7 @@ class Search extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {/* <NavigationEvents onWillFocus={this.onWillFocus} /> */}
+        <NavigationEvents onWillFocus={this.onWillFocus} />
 
 	      <TextInput
 	        style={styles.input}
@@ -75,19 +75,26 @@ class Search extends React.Component {
 	        returnKeyType='send'
           placeholder='Search'
           onSubmitEditing={this.searchUser}/>
-          <ScrollView> 
-            {
-              this.state.users.map(item => {
-                return <TouchableOpacity key={item.uid} onPress={() => this.goToUser(item)} style={[styles.row, styles.space]}>
-                  <Image style={styles.roundImage} source={{uri: item.photo}}/>
-                  <View style={[styles.container, styles.left]}>
-                    <Text style={styles.bold}>{item.userName}</Text>
-                    <Text style={styles.gray}>{item.bio}</Text>
-                  </View>
-                </TouchableOpacity>
-              })
-            }
-          </ScrollView>
+
+          {/* <Button title='reverse' onPress={() => {
+            const { users } = this.state
+            this.setState({users: [ ...users.reverse()] })
+          }} /> */}
+          
+      	<FlatList
+				  data={this.state.users}
+				  keyExtractor={(item) => JSON.stringify(item.uid)}
+				  renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => this.goToUser(item)} style={[styles.row, styles.space]}>
+            <Image style={styles.roundImage} source={{uri: item.photo}}/>
+            <View style={[styles.container, styles.left]}>
+              <Text style={styles.bold}>{item.userName}</Text>
+              <Text style={styles.gray}>{item.bio}</Text>
+              {/* <Text style={styles.gray}>{item.uid}</Text> */}
+            </View>
+          </TouchableOpacity>
+				)} />
+          
       </View>
     )
   }
