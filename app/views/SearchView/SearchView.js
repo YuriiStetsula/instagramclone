@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { View, Text, SafeAreaView, TextInput, Image, TouchableOpacity, StyleSheet, FlatList, Button } from 'react-native';
+import { View, Text, SafeAreaView, TextInput, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { searchUser, getUser } from '../../actions/user'
-import { NavigationEvents } from 'react-navigation'
+
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ searchUser, getUser }, dispatch)
@@ -15,35 +15,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-
-// const fakeUser = {
-//   email:"yurii@test.com",
-//   followers: null,
-//   following: null,
-//   photo:"https://image.flaticon.com/icons/png/512/55/55089.png",
-//   uid:"HW5gQGTUQvXcfi9OLwasb1Ok6kt2",
-//   userName:"yuriistetsula",
-// }
-
-
-// const fakeUsers = []
-// for (let i = 0; i < 999; i++) {
-//   fakeUsers.push({ ...fakeUser, uid: i})
-// }
-
 class Search extends React.Component {
 	state = {
     search: '',
     users: []
-  }
-
-
-  // onWillFocus = () => {
-  //   console.log('onWillFocus')
-  //   this.setState({
-  //     users: fakeUsers
-  //   })
-  // }
+	}
 
 	searchUser = () => {
     this.props.searchUser(this.state.search)
@@ -66,8 +42,6 @@ class Search extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <NavigationEvents onWillFocus={this.onWillFocus} />
-
 	      <TextInput
 	        style={styles.input}
 	        onChangeText={(search) => this.setState({search})}
@@ -75,13 +49,7 @@ class Search extends React.Component {
 	        returnKeyType='send'
           placeholder='Search'
           onSubmitEditing={this.searchUser}/>
-
-          {/* <Button title='reverse' onPress={() => {
-            const { users } = this.state
-            this.setState({users: [ ...users.reverse()] })
-          }} /> */}
-          
-      	<FlatList
+				<FlatList
 				  data={this.state.users}
 				  keyExtractor={(item) => JSON.stringify(item.uid)}
 				  renderItem={({ item }) => (
@@ -90,11 +58,9 @@ class Search extends React.Component {
             <View style={[styles.container, styles.left]}>
               <Text style={styles.bold}>{item.userName}</Text>
               <Text style={styles.gray}>{item.bio}</Text>
-              {/* <Text style={styles.gray}>{item.uid}</Text> */}
             </View>
           </TouchableOpacity>
 				)} />
-          
       </View>
     )
   }
