@@ -3,6 +3,7 @@ import { Provider, connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { AppNavigator } from '../../routes'
+import NavigationService from '../../navigation'
 
 import * as UserActions from '../../actions/user'
 
@@ -22,25 +23,25 @@ class Root extends Component {
     const { token, getUserProfile } = this.props
     if (token) {
       Promise.resolve()
-        .then(() => { this.props.navigation.navigate('Home') })
+        .then(() => { NavigationService.navigate('Home') })
         .then(() => { getUserProfile() })
     } else {
-      this.props.navigation.navigate('Auth')
+      NavigationService.navigate('Auth')
     }
   }
 
   componentDidUpdate (prevProps) {
     if (prevProps.token !== this.props.token && !this.props.token) {
-      this.props.navigation.navigate('Auth')
+      NavigationService.navigate('Auth')
     } else if (!prevProps.token !== this.props.token && this.props.token) {
-      this.props.navigation.navigate('Home')
+      NavigationService.navigate('Home')
     }
   }
 
   render () {
     return (
       <Provider store={this.props.store}>
-        <AppNavigator />
+        <AppNavigator ref={navigatorRef => { NavigationService.setTopLevelNavigator(navigatorRef) }} />
       </Provider>
     )
   }
