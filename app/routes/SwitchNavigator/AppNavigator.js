@@ -1,10 +1,10 @@
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
-import { ProfileView } from '../../views'
+import { createSwitchNavigator, createAppContainer } from 'react-navigation'
+import TabNavigator from '../TabNavigator/TabNavigator'
 import AuthNavigator from '../StackNavigator/AuthNavigator'
 
 const AppNavigator = createSwitchNavigator(
   {
-    Home: ProfileView,
+    Home: TabNavigator,
     Auth: AuthNavigator
   },
   {

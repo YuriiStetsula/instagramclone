@@ -1,4 +1,4 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 import { LoginView, SignupView } from '../../views'
 
 const AuthNavigator = createStackNavigator(
@@ -18,4 +18,4 @@ const AuthNavigator = createStackNavigator(
   }
 )
 
-export default createAppContainer(AuthNavigator)
+export default AuthNavigator
