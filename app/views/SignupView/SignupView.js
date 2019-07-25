@@ -45,7 +45,7 @@ class SignupView extends React.Component {
   }
 
   onLoginPress = () => {
-    console.log('signup pressed')
+    console.log('onsignup pressed')
   }
 
   render () {

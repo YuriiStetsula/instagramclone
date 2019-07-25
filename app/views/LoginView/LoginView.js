@@ -33,7 +33,7 @@ class LoginView extends React.Component {
   }
 
   onSignupPress = () => {
-    console.log('login pressed')
+    console.log('onlogin pressed')
   }
 
   onEmailChange = value => {
