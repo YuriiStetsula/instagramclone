@@ -33,7 +33,7 @@ class LoginView extends React.Component {
   }
 
   onSignupPress = () => {
-    console.log('onlogin pressed')
+    this.props.navigation.navigate('Signup')
   }
 
   onEmailChange = value => {

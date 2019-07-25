@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 
-import { SignupView } from '../../views'
+import { AuthNavigator } from '../../routes'
 
 // import * as UserActions from '../../actions/user'
 
@@ -19,7 +19,7 @@ class Root extends Component {
   render () {
     return (
       <Provider store={this.props.store}>
-        <SignupView />
+        <AuthNavigator />
       </Provider>
     )
   }

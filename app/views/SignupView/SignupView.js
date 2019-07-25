@@ -45,7 +45,7 @@ class SignupView extends React.Component {
   }
 
   onLoginPress = () => {
-    console.log('onsignup pressed')
+    this.props.navigation.goBack()
   }
 
   render () {
