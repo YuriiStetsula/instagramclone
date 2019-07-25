@@ -22,10 +22,10 @@ class ProfileView extends React.Component {
   state = {
     user: null,
     routName: 'Profile',
-    // modal: false,
-    // visible: new Animated.Value(0), 
-    // modalPostPhoto: '',
-    // backgroundColor: 'transparent'
+    modal: false,
+    visible: new Animated.Value(0), 
+    modalPostPhoto: '',
+    backgroundColor: 'transparent'
   }
 
   onWillFocus = () => {
@@ -81,34 +81,34 @@ class ProfileView extends React.Component {
   }
 
 
-  // showModal = postPhoto => {
-  //   this.setState({modal: true, modalPostPhoto: postPhoto, backgroundColor: 'rgba(0,0,0, 0.1)' }, () => {
-  //     Animated.timing(this.state.visible, {
-  //       toValue: 1,
-  //       useNativeDriver: true,
-  //       duration: 250,
-  //     }).start();
-  //   })
-  // }
+  showModal = postPhoto => {
+    this.setState({modal: true, modalPostPhoto: postPhoto, backgroundColor: 'rgba(0,0,0, 0.1)' }, () => {
+      Animated.timing(this.state.visible, {
+        toValue: 1,
+        useNativeDriver: true,
+        duration: 250,
+      }).start();
+    })
+  }
 
-  // hideModal = () => { 
-  //   if (!this.state.modal) {
-  //     return
-  //   }
-  //   Animated.timing(this.state.visible, {
-  //     toValue: 0,
-  //     duration: 200,
-  //     useNativeDriver: true
-  //   }).start(() => {
-  //     this.setState({modal: false, modalPostPhoto: '', backgroundColor: 'transparent'}) 
-  //   })
-  // }
+  hideModal = () => { 
+    if (!this.state.modal) {
+      return
+    }
+    Animated.timing(this.state.visible, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true
+    }).start(() => {
+      this.setState({modal: false, modalPostPhoto: '', backgroundColor: 'transparent'}) 
+    })
+  }
 
   renderItem = ({ item }) => {
     return (
       <TouchableWithoutFeedback
-        // onLongPress={() => this.showModal(item.postPhoto)}
-        // onPressOut={this.hideModal}
+        onLongPress={() => this.showModal(item.postPhoto)}
+        onPressOut={this.hideModal}
         >
         <Image style={styles.squareLarge} source={{uri: item.postPhoto}}/>
       </TouchableWithoutFeedback>
@@ -175,7 +175,7 @@ class ProfileView extends React.Component {
               keyExtractor={item => JSON.stringify(item.date)}
               renderItem={this.renderItem}/>
           </ScrollView>
-          {/* {
+          {
             this.state.modalPostPhoto 
             ? <Animated.View style={[StyleSheet.absoluteFill, modalstyles.modal, 
                 {
@@ -199,7 +199,7 @@ class ProfileView extends React.Component {
                 </View>
             </Animated.View>
             : null          
-          } */}
+          }
           </>
             : null
           }
@@ -211,48 +211,48 @@ class ProfileView extends React.Component {
 }
 
 
-// const modalstyles = StyleSheet.create({
-//   container: {
-//     flex: 1
-//   },
-//   modal: {
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-//   modalContainer: {
-//     width: "90%",
-//     height: "70%",
-//     borderRadius: 8
-//   },
-//   header: {
-//     backgroundColor: "#FFF",
-//     borderTopLeftRadius: 8,
-//     borderTopRightRadius: 8,
-//     overflow: "hidden",
-//     height: '10%',
-//     padding: 10
-//   },
-//   body: {
-//     height: '80%',
-//     width: '100%',
-//     backgroundColor: "#d3d3d3",
-//   },
-//   footer: {
-//     backgroundColor: "#FFF",
-//     borderBottomLeftRadius: 8,
-//     borderBottomRightRadius: 8,
-//     overflow: "hidden",
-//     height: '10%',
-//     padding: 10
-//   },
-//   image: {
-//     width: "100%",
-//     height: "100%",
-//   },
-//   bold: {
-//     fontWeight: "bold",
-//   },
-// });
+const modalstyles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  modal: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalContainer: {
+    width: "90%",
+    height: "70%",
+    borderRadius: 8
+  },
+  header: {
+    backgroundColor: "#FFF",
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    overflow: "hidden",
+    height: '10%',
+    padding: 10
+  },
+  body: {
+    height: '80%',
+    width: '100%',
+    backgroundColor: "#d3d3d3",
+  },
+  footer: {
+    backgroundColor: "#FFF",
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    overflow: "hidden",
+    height: '10%',
+    padding: 10
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+  },
+  bold: {
+    fontWeight: "bold",
+  },
+});
 
 const styles = StyleSheet.create({
   container: {
