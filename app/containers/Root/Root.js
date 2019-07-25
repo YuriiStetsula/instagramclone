@@ -1,32 +1,51 @@
 import React, { Component } from 'react'
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-import { AuthNavigator } from '../../routes'
+import { AppNavigator } from '../../routes'
 
-// import * as UserActions from '../../actions/user'
+import * as UserActions from '../../actions/user'
 
-// function mapDispatchToProps (dispatch) {
-//   return bindActionCreators({ ...UserActions }, dispatch)
-// }
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators({ ...UserActions }, dispatch)
+}
 
-// function mapStateToProps (state) {
-//   return {
-//     token: state.user.token
-//   }
-// }
+function mapStateToProps (state) {
+  return {
+    token: state.user.token
+  }
+}
 
 class Root extends Component {
+
+  componentDidMount () {
+    const { token, getUserProfile } = this.props
+    if (token) {
+      Promise.resolve()
+        .then(() => { this.props.navigation.navigate('Home') })
+        .then(() => { getUserProfile() })
+    } else {
+      this.props.navigation.navigate('Auth')
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.token !== this.props.token && !this.props.token) {
+      this.props.navigation.navigate('Auth')
+    } else if (!prevProps.token !== this.props.token && this.props.token) {
+      this.props.navigation.navigate('Home')
+    }
+  }
+
   render () {
     return (
       <Provider store={this.props.store}>
-        <AuthNavigator />
+        <AppNavigator />
       </Provider>
     )
   }
 }
 
-export default Root
+const ConnectedRoot = connect(mapStateToProps, mapDispatchToProps)(Root)
 
-// const ConnectedRoot = connect(mapStateToProps, mapDispatchToProps)(Root)
-
-// export default ConnectedRoot
+export default ConnectedRoot

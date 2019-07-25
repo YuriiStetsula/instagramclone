@@ -1,4 +1,5 @@
 import React from 'react'
+import { Text } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../../actions/auth'
@@ -18,7 +19,7 @@ const mapStateToProps = (state) => {
 class ProfileView extends React.Component {
 
   render () {
-    return null
+    return <Text> ProfileView </Text>
   }
 }
 
