@@ -1,7 +1,9 @@
 import React from 'react'
 import { createBottomTabNavigator } from 'react-navigation'
-import { UploadView, ActivityView, HomeView, SearchView, ProfileView } from '../../views'
+import { UploadView, ActivityView, HomeView } from '../../views'
 import { Icon } from '../../components'
+import SearchNavigator from '../StackNavigator/SearchNavigator'
+import ProfileNavigator from '../StackNavigator/ProfileNavigator'
 
 const TabNavigator = createBottomTabNavigator({
   Home: {
@@ -13,7 +15,7 @@ const TabNavigator = createBottomTabNavigator({
     }
   },
   Search: {
-    screen: SearchView,
+    screen: SearchNavigator,
     navigationOptions: {
       tabBarIcon: ({ focused }) => (
         <Icon name={ focused ? 'md-search' : 'ios-search'} size={32} />
@@ -35,7 +37,7 @@ const TabNavigator = createBottomTabNavigator({
     }
   },
   Profile: {
-    screen: ProfileView,
+    screen: ProfileNavigator,
     navigationOptions: {
       tabBarIcon: ({ focused }) => ( 
         <Icon name={ focused ? 'person' : 'person-outline'} iconSetName={'MaterialIcons'} size={32} /> 
