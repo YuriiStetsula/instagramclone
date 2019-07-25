@@ -1,13 +1,14 @@
 import React from 'react'
 import { createBottomTabNavigator } from 'react-navigation'
-import { UploadView, ActivityView, HomeView } from '../../views'
+import { UploadView, ActivityView } from '../../views'
 import { Icon } from '../../components'
+import HomeNavigator from '../StackNavigator/HomeNavigator'
 import SearchNavigator from '../StackNavigator/SearchNavigator'
 import ProfileNavigator from '../StackNavigator/ProfileNavigator'
 
 const TabNavigator = createBottomTabNavigator({
   Home: {
-    screen: HomeView,
+    screen: HomeNavigator,
     navigationOptions: {
       tabBarIcon: ({ focused }) => (
         <Icon name={ focused ? 'home' : 'home-outline'} iconSetName={'MaterialCommunityIcons'} size={32} />
