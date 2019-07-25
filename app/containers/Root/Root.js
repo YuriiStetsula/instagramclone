@@ -6,7 +6,6 @@ import { AppNavigator } from '../../routes'
 import NavigationService from '../../navigation'
 
 import * as UserActions from '../../actions/user'
-import { Storage } from '../../storage';
 
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({ ...UserActions }, dispatch)
@@ -22,17 +21,13 @@ class Root extends Component {
 
   componentDidMount () {
     const { token, getUserProfile } = this.props
-
-    Storage.get('token')
-      .then(storedToken => {
-        if (token || storedToken) {
-          Promise.resolve()
-            .then(() => { NavigationService.navigate('Home') })
-            .then(() => { getUserProfile() })
-        } else {
-          NavigationService.navigate('Auth')
-        }
-      })
+    if (token) {
+      Promise.resolve()
+        .then(() => { NavigationService.navigate('Home') })
+        .then(() => { getUserProfile() })
+    } else {
+      NavigationService.navigate('Auth')
+    }
   }
 
   componentDidUpdate (prevProps) {

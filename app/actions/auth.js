@@ -1,7 +1,6 @@
 import firebase from 'firebase'
 import * as UserActions from './user'
 import config from '../config'
-import { Storage } from '../storage';
 
 const FIREBASE_SIGNIN_REQUEST = 'FIREBASE_SIGNIN_REQUEST'
 const FIREBASE_SIGNIN_FAILURE = 'FIREBASE_SIGNIN_FAILURE'
@@ -21,7 +20,6 @@ const signIn = ({ email, password }) => {
         throw new Error('user not found')
       })
       .then(token => {
-        Storage.set('token', token)
         return Promise.resolve(dispatch({ type: FIREBASE_SIGNIN_SUCCESS, token }))
           .then(dispatch(UserActions.getUserProfile()))
       })
