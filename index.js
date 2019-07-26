@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry } from 'react-native'
 import { name as appName } from './app.json'
 import { Root } from './app/containers'
 import firebase from 'firebase'
