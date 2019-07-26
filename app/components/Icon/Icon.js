@@ -15,7 +15,6 @@ class Icon extends React.PureComponent {
     const { style, name, type, iconSetName, ...rest } = this.props
 
     let IconSet = null
-    console.log('render')
 
     switch (iconSetName) {
       case 'Ionicons':
