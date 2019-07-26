@@ -3,7 +3,7 @@ import { ProfileView } from '../../views'
 
 const ProfileNavigator = createStackNavigator(
   {
-    Profile: {
+    MyProfile: {
       screen: ProfileView,
       navigationOptions: {
         title: 'Profile'

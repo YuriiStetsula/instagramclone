@@ -23,7 +23,7 @@ class Root extends Component {
     const { token, getUserProfile } = this.props
     if (token) {
       Promise.resolve()
-        .then(() => { NavigationService.navigate('Home') })
+        .then(() => { NavigationService.navigate('Main') })
         .then(() => { getUserProfile() })
     } else {
       NavigationService.navigate('Auth')
@@ -34,7 +34,7 @@ class Root extends Component {
     if (prevProps.token !== this.props.token && !this.props.token) {
       NavigationService.navigate('Auth')
     } else if (!prevProps.token !== this.props.token && this.props.token) {
-      NavigationService.navigate('Home')
+      NavigationService.navigate('Main')
     }
   }
 

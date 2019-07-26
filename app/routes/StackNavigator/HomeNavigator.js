@@ -10,7 +10,7 @@ const withoutTabBar = ['Comment']
 
 const HomeNavigator = createStackNavigator(
   {
-    Home: {
+    Posts: {
       screen: HomeView,
       navigationOptions: ({ navigation }) => ({
         headerTitle: <Image style={{ width: 120, height: 35 }} source={require('../../assets/logo.jpg')} />,

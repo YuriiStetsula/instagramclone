@@ -21,7 +21,7 @@ class ProfileView extends React.Component {
 
   state = {
     user: null,
-    routName: 'Profile',
+    routName: 'MyProfile',
     modal: false,
     visible: new Animated.Value(0), 
     modalPostPhoto: '',
@@ -118,7 +118,7 @@ class ProfileView extends React.Component {
   render () {
     const { state, navigate } = this.props.navigation
     const { user } = this.state
-    let userData = state.routeName === 'Profile' ? this.props.profile : user
+    let userData = state.routeName === 'MyProfile' ? this.props.profile : user
   
     return (
       <View style={{backgroundColor:  this.state.backgroundColor, flex: 1}}>

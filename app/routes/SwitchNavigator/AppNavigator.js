@@ -4,7 +4,7 @@ import AuthNavigator from '../StackNavigator/AuthNavigator'
 
 const AppNavigator = createSwitchNavigator(
   {
-    Home: TabNavigator,
+    Main: TabNavigator,
     Auth: AuthNavigator
   },
   {
