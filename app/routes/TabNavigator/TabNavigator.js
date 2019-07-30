@@ -7,7 +7,7 @@ import SearchNavigator from '../StackNavigator/SearchNavigator'
 import ProfileNavigator from '../StackNavigator/ProfileNavigator'
 
 const TabNavigator = createBottomTabNavigator({
-  Home: {
+  Main: {
     screen: HomeNavigator,
     navigationOptions: {
       tabBarIcon: ({ focused }) => (
@@ -37,7 +37,7 @@ const TabNavigator = createBottomTabNavigator({
       )
     }
   },
-  Profile: {
+  MyProfile: {
     screen: ProfileNavigator,
     navigationOptions: {
       tabBarIcon: ({ focused }) => ( 
